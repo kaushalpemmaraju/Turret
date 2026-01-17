@@ -1,25 +1,16 @@
 package team5427.frc.robot.subsystems.shooter;
 
-import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.units.measure.LinearVelocity;
-import edu.wpi.first.wpilibj.Alert;
-import edu.wpi.first.wpilibj.Alert.AlertType;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import java.util.Optional;
 import java.util.function.Supplier;
 import org.ironmaple.simulation.drivesims.SwerveDriveSimulation;
 import org.littletonrobotics.junction.Logger;
 import team5427.frc.robot.Constants;
-import team5427.frc.robot.Constants.Mode;
-import team5427.frc.robot.subsystems.shooter.ShooterIO.ShooterIOInputs;
 
 public class ShooterSubsystem extends SubsystemBase {
   private LinearVelocity outVelocity;
-  
 
   private ShooterIOTalonFX io = new ShooterIOTalonFX();
   private ShooterIOInputsAutoLogged inputsAutoLogged;
@@ -71,17 +62,15 @@ public class ShooterSubsystem extends SubsystemBase {
     io.disableRoller2();
   }
 
-  public boolean isRollerMotorDisabled() {
-    return inputsAutoLogged.rollerMotorDisabled;
+  public boolean isRollerMotor1Disabled() {
+    return inputsAutoLogged.rollerMotor1IsConnected;
   }
 
-  public boolean isPivotMotorDisabled() {
-    return inputsAutoLogged.pivotMotorDisabled;
+  public boolean isRoller2MotorDisabled() {
+    return inputsAutoLogged.rollerMotor2IsConnected;
   }
 
   public void log() {
     Logger.recordOutput("Shooter/ShootingSpeed", outVelocity.in(MetersPerSecond));
   }
-
-
 }
